@@ -20,7 +20,7 @@ namespace FirstBank.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.AccountId = new SelectList(_db.Accounts, "AccountId", "MachName");
+      ViewBag.AccountId = new SelectList(_db.Accounts, "AccountId", "AccountName");
       return View();
     }
     [HttpPost]
@@ -60,7 +60,7 @@ namespace FirstBank.Controllers
     public ActionResult Edit(int id)
     {
       var thisCustomer = _db.Customers.FirstOrDefault(customer => customer.CustomerId == id);
-      ViewBag.AccountId = new SelectList(_db.Accounts, "AccountId", "MachName");
+      ViewBag.AccountId = new SelectList(_db.Accounts, "AccountId", "AccountName");
       return View(thisCustomer);
     }
     [HttpPost]
@@ -76,16 +76,16 @@ namespace FirstBank.Controllers
     }
     public ActionResult AddAccount(int id)
     {
-      var thisCustomer = _db.Customers.FirstOrDefault(item => item.CustomerId == id);
-      ViewBag.AccountId = new SelectList(_db.Accounts, "AccountId", "MachName");
+      var thisCustomer = _db.Customers.FirstOrDefault(account => account.CustomerId == id);
+      ViewBag.AccountId = new SelectList(_db.Accounts, "AccountId", "AccountName");
       return View(thisCustomer);
     }
     [HttpPost]
-    public ActionResult AddAccount(Customer item, int AccountId)
+    public ActionResult AddAccount(Customer account, int AccountId)
     {
       if (AccountId != 0)
       {
-        _db.CustomerAccount.Add(new CustomerAccount() { AccountId = AccountId, CustomerId = item.CustomerId });
+        _db.CustomerAccount.Add(new CustomerAccount() { AccountId = AccountId, CustomerId = account.CustomerId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");

@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+
+@model FirstBank.Models.Customer
+
+<h4>Add a new task</h4>
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.CustomerName)
+  @Html.TextBoxFor(model => model.CustomerName)
+  <input type="submit" value="Add new customer" />
+}
+<p>@Html.ActionLink("Show all customers", "Index")</p>

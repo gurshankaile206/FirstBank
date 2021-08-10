@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model FirstBank.Models.Account
+
+<h4>Add a new task</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Balance)
+  @Html.TextBoxFor(model => model.Balance)
+
+  @Html.Label("Select customer")
+  @Html.DropDownList("CustomerId")
+
+  <input type="submit" value="Add new account" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Show all accounts", "Index")</p>

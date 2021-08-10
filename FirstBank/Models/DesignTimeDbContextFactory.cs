@@ -5,10 +5,10 @@ using System.IO;
 
 namespace FirstBank.Models
 {
-  public class FirstBankContextFirstBank : IDesignTimeDbContextFirstBank<FirstBankContext>
+  public class FirstBankContextFirstBank : IDesignTimeDbContextFactory<FirstBankContext>
   {
 
-    FirstBankContext IDesignTimeDbContextFirstBank<FirstBankContext>.CreateDbContext(string[] args)
+    FirstBankContext IDesignTimeDbContextFactory<FirstBankContext>.CreateDbContext(string[] args)
     {
       IConfigurationRoot configuration = new ConfigurationBuilder()
           .SetBasePath(Directory.GetCurrentDirectory())

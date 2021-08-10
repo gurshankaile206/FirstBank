@@ -1,0 +1,28 @@
+@{
+  Layout = "_Layout";
+}
+
+@model FirstBank.Models.Customer;
+
+<h2>Customer Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.CustomerName): @Html.DisplayFor(model => model.CustomerName)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This customer does not contain any accounts</p>
+}
+else
+{
+  <h4>Accounts the customer contains:</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Account.Balance</li>
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to customers", "Index")</p>
+<p>@Html.ActionLink("Edit Customer", "Edit", new { id = Model.CustomerId })</p>
+<p>@Html.ActionLink("Delete Customer", "Delete", new { id = Model.CustomerId })</p>

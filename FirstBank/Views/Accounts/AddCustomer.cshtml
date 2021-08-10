@@ -4,16 +4,13 @@
 
 @model FirstBank.Models.Account
 
-<h2>Edit</h2>
+<h2>Add a customer</h2>
 
-<h4>Edit this task: @Html.DisplayFor(model => model.Balance)</h4>
+<h4>Add a customer to this task: @Html.DisplayFor(model => model.Balance)</h4>
 
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.AccountId)
-
-  @Html.LabelFor(model => model.Balance)
-  @Html.EditorFor(model => model.Balance)
 
   @Html.Label("Select customer")
   @Html.DropDownList("CustomerId")

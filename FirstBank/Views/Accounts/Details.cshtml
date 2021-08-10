@@ -1,0 +1,35 @@
+@{
+  Layout = "_Layout";
+}
+
+@model FirstBank.Models.Account
+
+<h2>Account Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Balance): @Html.DisplayFor(model => model.Balance)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This account does not belong to any customers</p>
+}
+else
+{
+  <h4>customers the account belongs to:</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Customer.CustomerName</li>
+    @using (Html.BeginForm("DeleteCustomer", "Accounts"))
+    {
+      @Html.Hidden("joinId", @join.CustomerAccountId)
+      <input type="submit" value="Delete"/>
+    }
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Add a Customer", "AddCustomer", new { id = Model.AccountId })</p>
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Edit Account", "Edit", new { id = Model.AccountId })</p>
+<p>@Html.ActionLink("Delete Account", "Delete", new { id = Model.AccountId })</p>

@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@using FirstBank.Models;
+
+<h1>Customers</h1>
+
+@if (@Model.Count == 0)
+{
+  <h3>No Customers have been added yet!</h3>
+} 
+
+<ul>
+  @foreach(Customer customer in Model)
+  {
+    <li>@Html.ActionLink($"{customer.CustomerName}", "Details", new { id = customer.CustomerId })</li>
+  }
+</ul>
+
+<p>@Html.ActionLink("Add new customer", "Create")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
